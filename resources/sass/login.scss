@@ -1,0 +1,497 @@
+// auth.scss
+// Variables
+$primary-blue: #084c8d;
+$secondary-red: #011425;
+$white: #ffffff;
+$dark-gray: #333333;
+$light-gray: #e5e5e5;
+$slate-gray: #6c757d;
+
+$checkbox-size: 26px;
+$checkmark-width: 6px;
+$checkmark-height: 12px;
+$transition-duration: 0.3s;
+
+$breakpoints: (
+  xs: 350px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px
+);
+
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+@use "sass:math";
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+// Main Container
+.auth {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+
+    .mainLoginContainer {
+        display: flex;
+        width: 100%;
+        .left{
+            flex: 0.5;
+            background-color:$secondary-red ;
+        }
+        .right{
+            flex: 0.5;
+        }
+        @media (max-width: 767px){
+            .left{
+                flex: 0.2;
+                width: 100vw;
+                background-color: white;
+
+            }
+            .right{
+                flex: 0.8;
+                width: 100vw;
+            }
+        }
+    }
+
+
+
+
+}
+
+.auth-logo-image{
+    width: 250px !important;
+    height: auto !important;
+}
+
+// Logo Section
+.logo-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba($secondary-red, 0.6);
+        z-index: 1;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: -1px;
+        width: 33.33%;
+        background: $white;
+        z-index: 2;
+        clip-path: polygon(0 0, 100% 100%, 100% 0);
+    }
+
+    .logo {
+        position: relative;
+        z-index: 5;
+        margin-left: -21%;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+
+        img {
+            height: 55px;
+            width: auto;
+        }
+
+        >.logo-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: white ;
+            letter-spacing: 1px;
+            z-index: 5;
+            position: relative;
+            margin-left: 1rem;
+
+        }
+    }
+
+    @media (max-width: 767px){
+        .logo{
+            background-color: white;
+
+            >.logo-text{
+                color: $primary-blue;
+            }
+        }
+    }
+}
+
+// Form Section
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white !important;
+
+    .form-container {
+
+        width: 100%;
+        max-width: 27rem;
+        padding: 0 1.5rem;
+
+        .login-form{
+            h1{
+                text-align: center;
+                margin-bottom: 2.25rem;
+                font-weight: 700;
+                font-size: 1.9375rem;
+                color: $primary-blue;
+            }
+
+        }
+    }
+
+}
+
+// Common Form Styles
+.login-form-group {
+    position: relative;
+    margin-bottom: 2rem;
+
+    label {
+        position: absolute;
+        left: 1rem;
+        top: -0.6rem;
+        background: $white;
+        padding: 0 0.35rem;
+        color: $dark-gray;
+        font-size: 1.125rem;
+        font-weight: 700;
+        transition: all 0.2s ease;
+    }
+
+    input {
+        height: 4.375rem;
+        padding: 1.125rem 1rem;
+        font-size: 1.125rem;
+        border: 2px solid $light-gray;
+        border-radius: 2px;
+        width: 100%;
+
+        &:focus {
+            border-color: $primary-blue;
+            outline: none;
+            box-shadow: none;
+
+            + label {
+                color: $primary-blue;
+            }
+        }
+    }
+}
+//for the remember me
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.25rem;
+    @include flex-center;
+
+    .remember-me {
+        position: relative;
+        margin-bottom: 0;
+        @include flex-center;
+
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+
+            &:checked + label {
+                &:after {
+                    border-color: $primary-blue;
+                }
+            }
+
+            &:focus + label {
+                &:before {
+                    box-shadow: 0 0 0 2px rgba($primary-blue, 0.25);
+                }
+            }
+        }
+
+        label {
+            margin-bottom: 0;
+            cursor: pointer;
+            padding-left: calc($checkbox-size + 0.75rem);
+            position: relative;
+            font-size: 1.125rem;
+            @include flex-center;
+
+            &:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                height: $checkbox-size;
+                width: $checkbox-size;
+                border: 1.5px solid $slate-gray;
+                border-radius: 2px;
+                background-color: $white;
+                transition: border-color $transition-duration ease;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                left: math.div($checkbox-size - $checkmark-width, 2);
+                top: 50%;
+                transform: translateY(-75%) rotate(45deg);
+                height: $checkmark-height;
+                width: $checkmark-width;
+                border-width: 0 2px 2px 0;
+                border-style: solid;
+                border-color: transparent;
+                transition: border-color $transition-duration ease;
+            }
+
+            &:hover {
+                &:before {
+                    border-color: $primary-blue;
+                }
+            }
+        }
+    }
+
+    .forgot-password {
+        margin-left: 1rem;
+        color: $slate-gray;
+        text-decoration: none;
+        transition: color $transition-duration ease;
+
+        &:hover {
+            color: darken($slate-gray, 10%);
+        }
+    }
+}
+
+// Button Styles
+.loginButton {
+    background-color: $primary-blue;
+    border: none;
+    border-radius: 10rem;
+    padding: 1.25rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: white;
+
+    &:hover {
+        background-color: darken($primary-blue, 10%);
+        color: white;
+    }
+}
+
+// Register Options
+.register-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4.5rem;
+    width: 80%;
+
+    .register-block {
+        flex: 1;
+        margin: 0 15px;
+        padding: 1.5rem;
+        border: 2px solid $light-gray;
+        text-align: center;
+        transition: all 0.25s ease;
+
+        img {
+            height: 2.375rem;
+            width: auto;
+            margin-bottom: 0.75rem;
+            color: $secondary-red ;
+        }
+
+        h5 {
+            color: $dark-gray;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        &:hover {
+            border-color: $primary-blue;
+            box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.18);
+            text-decoration: none;
+        }
+    }
+    @media screen and (max-width: 1149px) {
+        flex-direction: column;
+        width: 80%;
+
+        .register-block {
+            margin: 15px 0;
+        }
+    }
+}
+
+
+// Responsive Media Queries
+@media (max-width: 1599px) {
+    .logo-wrapper .logo img {
+        max-width: 18rem;
+    }
+
+    .login-wrapper {
+        padding: 1.75rem 0;
+
+        .login-form {
+            .h4 {
+                margin-bottom: 2.25rem;
+            }
+
+            form > .login-form-group {
+                margin-bottom: 1.75rem;
+                input {
+                    height: 3.875rem;
+                    font-size: 16px;
+                    padding: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1199px) {
+    .logo-wrapper .logo img {
+        max-width: 11rem;
+    }
+
+    .login-wrapper {
+        .login-form {
+            padding: 0;
+            form {
+                max-width: 24rem;
+
+                .login-form-group {
+                    margin-bottom: 1.5rem;
+                    input {
+                        height: 3.5rem;
+                        padding: 0.75rem 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .logo-wrapper {
+        &::after {
+            display: none;
+        }
+
+        .logo {
+            margin-left: 0;
+        }
+    }
+
+    .login-wrapper {
+        .login-form {
+            form {
+                max-width: 23rem;
+                label {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+     .mainLoginContainer {
+        min-height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .left {
+        background-image: none !important;
+        min-height: auto;
+        padding-top: 2rem;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .login-wrapper {
+        .h4 {
+            font-size: 1.625rem;
+        }
+
+        .login-form .h4 {
+            margin-bottom: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .logo-wrapper .logo img {
+        max-width: 9.5rem;
+    }
+
+    .login-wrapper .login-form {
+        padding: 0 20px;
+
+        form > .login-form-group {
+            input {
+                height: 3rem;
+                padding: 0.675rem 1rem;
+            }
+
+            label {
+                left: 1rem;
+                top: -0.5rem;
+                padding: 0 0.25rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .login-wrapper .login-form form .d-flex {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+
+        .form-link {
+            width: 100%;
+            margin-top: 1rem;
+            margin-left: 0;
+        }
+    }
+}
