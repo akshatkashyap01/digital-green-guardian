@@ -23,7 +23,7 @@ class StoreActivityUploadRequest extends FormRequest
     {
         return [
             'category_id' => 'required|exists:categories,id',
-            'upload' => 'required|file|mimes:jpg,jpeg,png,pdf,docx,doc|max:2048',
+            'upload' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
             'task_description' => 'nullable|string|max:50',
         ];
     }

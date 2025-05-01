@@ -4,28 +4,28 @@
     {{ config('adminlte.classes_topnav_nav', 'navbar-expand') }}
     {{ config('adminlte.classes_topnav', 'navbar-white navbar-light') }} shadow-lg">
 
-    {{-- Navbar left links --}}
+    {{-- ◀ LEFT NAVIGATION ▶ --}}
     <ul class="navbar-nav">
-        {{-- Left sidebar toggler link --}}
         @if(config('adminlte.sidebar_toggler_icon'))
-        @include('adminlte::partials.navbar.menu-item-left-sidebar-toggler')
+            @include('adminlte::partials.navbar.menu-item-left-sidebar-toggler')
         @endif
-        {{-- Configured left links --}}
         @each('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-left'), 'item')
-
-        {{-- Custom left links --}}
         @yield('content_top_nav_left')
     </ul>
 
-    {{-- Navbar right links --}}
+    {{-- ◀ CENTERED TEXT ▶ --}}
+    <ul class="navbar-nav mx-auto d-none d-md-flex">
+        <li class="nav-item navbar-center-item">
+            <span class="nav-link font-weight-bold nav-text-main">
+                Plant Your Voice | Grow Your Impact
+            </span>
+        </li>
+    </ul>
+
+    {{-- ◀ RIGHT NAVIGATION ▶ --}}
     <ul class="ml-auto navbar-nav">
-        {{-- Custom right links --}}
         @yield('content_top_nav_right')
-
-        {{-- Configured right links --}}
         @each('adminlte::partials.navbar.menu-item', $adminlte->menu('navbar-right'), 'item')
-
-        {{-- User menu link --}}
         @if(Auth::user())
             @if(config('adminlte.usermenu_enabled'))
                 @include('adminlte::partials.navbar.menu-item-dropdown-user-menu')
@@ -33,8 +33,6 @@
                 @include('adminlte::partials.navbar.menu-item-logout-link')
             @endif
         @endif
-
-        {{-- Right sidebar toggler link --}}
         @if($layoutHelper->isRightSidebarEnabled())
             @include('adminlte::partials.navbar.menu-item-right-sidebar-toggler')
         @endif
