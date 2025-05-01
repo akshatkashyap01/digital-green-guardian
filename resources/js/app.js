@@ -1,4 +1,5 @@
 import './bootstrap';
+import './ajax-requests';
 
 $(window).on('load', function () {
     $("#globalLoader").hide();
