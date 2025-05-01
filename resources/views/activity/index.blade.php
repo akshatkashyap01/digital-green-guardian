@@ -15,9 +15,12 @@
     </div>
     <div class="container-fluid px-4">
         <div class="card p-4" style="color:aliceblue;background-color:#1f4959;border-radius: 1rem; font-family: 'Times New Roman', Times, serif; font-weight:500; font-size: 2.0rem !important;">
-            <p class="mb-3">
-                Earning Reward Points
-            </p>
+            <div class="reward-points-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 0;">
+                <div class="left-text">Earning Reward Points</div>
+                @if (!auth()->user()->hasRole('Super Admin'))
+                <div class="right-text">My Reward Points : {{ $userRewardPoints }}</div>
+                @endif
+            </div>
             <p style="color:aliceblue;background-color:#1f4959;border-radius: 1rem; font-family: 'Times New Roman', Times, serif; font-weight:200; font-size: 1.5rem !important;">To earn reward points simply click on the upload button and follow these steps and if got approved yoou can win reward points which you can redeem later in the form of gift vouchers or cash. </p>
 
             <ul class="list-unstyled">
@@ -108,6 +111,9 @@
 
 
 
+            <div class="text-center mt-4" style="width: 100%; padding: 15px 0;">
+                <p style="font-size: 0.8em; margin: 0;">Note: To redeem your points please send a mail to - ayushreevyas1@gmail.com</p>
+            </div>
         </div>
     </div>
 </div>
