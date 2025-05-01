@@ -10,3 +10,16 @@
 @import "login";
 @import "loader";
 @import "sideBar";
+@import "modal";
+
+
+.heading {
+    font-weight: 400 !important;
+    font-size: 1.8rem !important;
+}
+
+.points {
+    font-weight: 300 !important;
+    font-size: 1.5rem !important;
+    margin-left:40px;
+}

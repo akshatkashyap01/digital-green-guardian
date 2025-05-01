@@ -1,0 +1,124 @@
+.custom-user-modal {
+    &.modal {
+        overflow: hidden;
+    }
+
+    .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        height: 100vh;
+        margin: 0px !important;
+    }
+
+    .modal-content {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 700px;
+
+        overflow-y: auto;
+
+        form {
+            .bottonfooter {
+                padding: 20px;
+                border-top: 1px solid #e0e0e0;
+                .add-user-btn {
+                    width: 100%;
+                    background-color: #011425;
+                    color: #ffffff;
+                    border: none;
+                    padding: 12px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: darken($secondary-red, 10%);
+                    }
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: 0 0 0 3px rgba(240, 68, 56, 0.3);
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-header {
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        button {
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 20px;
+        max-height: 70vh;
+
+        overflow-y: auto;
+
+        label {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(90, 92, 105, 1);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid grey !important;
+            background-color: rgba(255, 255, 255, 1);
+            border-radius: 8px !important;
+            font-size: 16px;
+            height: 61px;
+
+            &:focus {
+                outline: none;
+                border-color: $secondary-red;
+                box-shadow: 0 0 0 2px rgba(240, 68, 56, 0.1);
+            }
+        }
+        .error-message {
+            margin-top: 2px;
+        }
+    }
+
+    // Scrollbar styling
+    .modal-body {
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    }
+}
