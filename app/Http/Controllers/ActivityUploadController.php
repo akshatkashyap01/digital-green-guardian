@@ -17,7 +17,8 @@ class ActivityUploadController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('activity.index', compact('categories'));
+        $userRewardPoints = auth()->user()->points ?? 0;
+        return view('activity.index', compact('categories', 'userRewardPoints'));
     }
 
     /**
